@@ -1,0 +1,182 @@
+================================================================================
+ instructions.txt
+ Project Group 7 — AAAI 2024 Reproduction & Extension
+ Learning Persistent Community Structures in Dynamic Networks via TDA
+================================================================================
+
+GROUP MEMBERS
+-------------
+  Sayan Das        25CS60R01
+  Sayan Khan       25CS60R02
+  Varsha Das       25BM6JP57
+  Lalchand Mondal  25CS60R77
+
+GitHub Repository: https://github.com/SayanDasScientistCoder/CNT_Project_Group_7
+
+--------------------------------------------------------------------------------
+1. ENVIRONMENT SETUP
+--------------------------------------------------------------------------------
+
+This project runs in a Python (Jupyter Notebook) environment.
+The recommended way to set up the environment is via conda:
+
+  conda create -n cnt_project python=3.8.15
+  conda activate cnt_project
+  conda install cudatoolkit=11.6 -c conda-forge
+
+Install PyTorch with CUDA 11.6:
+
+  pip install torch==1.12.1+cu116 --extra-index-url https://download.pytorch.org/whl/cu116
+
+Install remaining dependencies:
+
+  pip install numpy==1.23.4 matplotlib==3.6.0 scipy==1.9.3 networkx==2.8.7 gudhi==3.6.0
+
+For Node2Vec support, also install:
+
+  pip install node2vec
+
+--------------------------------------------------------------------------------
+2. LIBRARY VERSIONS (FULL LIST)
+--------------------------------------------------------------------------------
+
+  python         = 3.8.15
+  cudatoolkit    = 11.6
+  pytorch        = 1.12.1+cu116
+  numpy          = 1.23.4
+  matplotlib     = 3.6.0
+  scipy          = 1.9.3
+  networkx       = 2.8.7
+  gudhi          = 3.6.0
+  node2vec       = (latest compatible with python 3.8)
+
+--------------------------------------------------------------------------------
+3. REPOSITORY STRUCTURE
+--------------------------------------------------------------------------------
+
+  Exp_Upd/
+  ├── Output/
+  │   ├── Baseline/       # GCN and GraphSAGE paper-style runs
+  │   └── Comparison/     # GCN, GraphSAGE, GIN, Transformer comparison runs
+  ├── node2vecOutputs/    # Node2Vec + GraphSAGE and Node2Vec + Transformer results
+  └── Codes/              # Exploratory Jupyter notebooks (multiscale, GMM, DP variants)
+
+Each subdirectory under Output/ and node2vecOutputs/ contains a summary.json
+file with the final metrics (ACC, NMI, ARI, Modularity, Recon ACC) for that run.
+
+--------------------------------------------------------------------------------
+4. HOW TO RUN THE NOTEBOOKS
+--------------------------------------------------------------------------------
+
+Step 1: Activate the environment
+  conda activate cnt_project
+
+Step 2: Launch Jupyter Notebook
+  jupyter notebook
+
+Step 3: Navigate to the relevant notebook inside Exp_Upd/Codes/ and open it.
+
+Step 4: Run all cells in order (Kernel > Restart & Run All).
+
+
+--------------------------------------------------------------------------------
+5. PAPER-STYLE CONFIGURATION (IMPORTANT)
+--------------------------------------------------------------------------------
+
+The most reliable and best-performing runs use the following configuration,
+which matches the original paper's setup:
+
+  encoded_space_dim = 30
+  learning_rate     = 0.001
+  training          = two-stage (pretrain + fine-tune)
+  alpha_pretrain    = 10.0
+  alpha_topo        = 1.0
+  beta_topo         = 10.0
+
+Deviating from this configuration (as in the earlier exploratory notebooks)
+leads to significantly degraded performance. Please use the above settings
+when reproducing the paper-style Baseline and Comparison runs.
+
+--------------------------------------------------------------------------------
+6. DATASETS
+--------------------------------------------------------------------------------
+
+Two datasets are used in this project:
+
+  - Highschool : Primary dataset; all Baseline and Comparison runs use this.
+  - Enron      : Used for Node2Vec experiments only.
+
+Dataset files should be placed in the path expected by the notebooks (see the
+data loading cells at the top of each notebook).
+
+--------------------------------------------------------------------------------
+7. KEY RESULTS SUMMARY
+--------------------------------------------------------------------------------
+
+Best result (Node2Vec + GraphSAGE on Highschool):
+  ACC = 72.59 | NMI = 70.26 | ARI = 56.78 | Modularity = 77.48
+
+Paper reference (MFC+Topo on Highschool):
+  ACC = 70.67 | NMI = 65.78 | ARI = 50.87 | Modularity = 77.87
+
+Our best result exceeds the paper on ACC (+1.92), NMI (+4.48), and ARI (+5.91).
+
+--------------------------------------------------------------------------------
+8. ADDITIONAL NOTES
+--------------------------------------------------------------------------------
+
+- A GPU with CUDA 11.6 support is strongly recommended for training.
+  CPU-only execution is possible but will be significantly slower.
+
+--------------------------------------------------------------------------------
+9. UTILITY SCRIPT: view_pickle.py
+--------------------------------------------------------------------------------
+
+view_pickle.py is a helper script for inspecting pickle (.pkl) files produced
+during experiments. It prints a compact, human-readable summary of the contents
+of any pickle file without requiring you to open a notebook.
+
+LOCATION:
+  The script is located one level above the Exp_Upd/ folder (i.e., at the
+  repository root level). It automatically adds the repository root to sys.path.
+
+USAGE:
+
+  Inspect a single .pkl file:
+    python view_pickle.py path/to/file.pkl
+
+  Recursively inspect all .pkl files under a directory:
+    python view_pickle.py Exp_Upd/Output/
+
+  If no path is given, it defaults to scanning the Output/ directory:
+    python view_pickle.py
+
+COMMAND-LINE OPTIONS:
+
+  target           Path to a .pkl file or a directory to scan recursively.
+                   Default: Output
+
+  --preview-items  Number of keys/items to preview for dicts, lists, or sets.
+                   Default: 5
+
+  --trusted        Allow full torch unpickling for files generated from your
+                   own runs. Use this flag if you see weights_only errors.
+                   Example: python view_pickle.py model.pkl --trusted
+
+OUTPUT FORMAT:
+  For each file found, the script prints:
+    - The file path
+    - The Python type of the top-level object
+    - For dicts  : length, a preview of keys, and the value of the first key
+    - For lists  : length, type of first item, and a preview of the first item
+    - For sets   : length and a preview of items
+    - For tensors/arrays : shape and value preview
+    - Any error encountered during loading
+
+LOADING BEHAVIOUR:
+  The script first attempts a standard pickle.load(). If that fails due to a
+  missing CUDA device or an unpickling error, it automatically falls back to
+  torch.load() with map_location=cpu, so GPU-saved checkpoints can be inspected
+  on any machine without a GPU.
+
+================================================================================
