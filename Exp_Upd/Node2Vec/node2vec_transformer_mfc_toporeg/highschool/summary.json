@@ -1,0 +1,110 @@
+{
+  "config": {
+    "dataset_name": "highschool",
+    "max_snapshots": 10,
+    "encoded_space_dim": 30,
+    "n_cluster": 9,
+    "num_pretrain_epoch": 500,
+    "num_topo_epoch": 500,
+    "start_mf": 300,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "alpha_pretrain": 10.0,
+    "alpha_topo": 1.0,
+    "beta_topo": 10.0,
+    "topo_cardinality": 32,
+    "eval_use_argmax_q": null,
+    "unknown_k_multiplier": 2,
+    "seed": 7,
+    "save_dir": "Output/node2vec_transformer_mfc_toporeg",
+    "device": null,
+    "structural_feature_dim": 128,
+    "node2vec_walk_length": 40,
+    "node2vec_num_walks": 10,
+    "node2vec_window_size": 10,
+    "node2vec_epochs": 20,
+    "node2vec_p": 1.0,
+    "node2vec_q": 2.0,
+    "node2vec_workers": 1
+  },
+  "device": "cuda",
+  "metrics_by_snapshot": [
+    {
+      "acc": 0.6559139784946236,
+      "nmi": 0.6505075770725236,
+      "ari": 0.48031558640157307,
+      "modularity": 0.6580397998341007,
+      "recon_acc": 0.6295653581619263
+    },
+    {
+      "acc": 0.4892703862660944,
+      "nmi": 0.5283269589018053,
+      "ari": 0.3208560445453366,
+      "modularity": 0.6082125865051903,
+      "recon_acc": 0.7030522227287292
+    },
+    {
+      "acc": 0.6885813148788927,
+      "nmi": 0.7276766592173147,
+      "ari": 0.5756861978094951,
+      "modularity": 0.6650730049301479,
+      "recon_acc": 0.7521700859069824
+    },
+    {
+      "acc": 0.7028301886792453,
+      "nmi": 0.7279444762260476,
+      "ari": 0.5455163989291626,
+      "modularity": 0.7440034838147774,
+      "recon_acc": 0.7058116793632507
+    },
+    {
+      "acc": 0.6814159292035398,
+      "nmi": 0.7177731272922365,
+      "ari": 0.509351991214395,
+      "modularity": 0.7327336537076842,
+      "recon_acc": 0.6682590842247009
+    },
+    {
+      "acc": 0.7582417582417582,
+      "nmi": 0.7343995633488728,
+      "ari": 0.5790536563677875,
+      "modularity": 0.7177081391720299,
+      "recon_acc": 0.662024199962616
+    },
+    {
+      "acc": 0.6147186147186147,
+      "nmi": 0.6017883202283127,
+      "ari": 0.4204923057070039,
+      "modularity": 0.781407403785026,
+      "recon_acc": 0.6532860994338989
+    },
+    {
+      "acc": 0.3872549019607843,
+      "nmi": 0.40346032631969286,
+      "ari": 0.1769118842524513,
+      "modularity": 0.7387816885468539,
+      "recon_acc": 0.6502306461334229
+    },
+    {
+      "acc": 0.7857142857142857,
+      "nmi": 0.7718846295948143,
+      "ari": 0.6708043356323093,
+      "modularity": 0.663801622034347,
+      "recon_acc": 0.7396173477172852
+    },
+    {
+      "acc": 0.7029702970297029,
+      "nmi": 0.6593606493829067,
+      "ari": 0.4012368808181149,
+      "modularity": 0.8227518191864225,
+      "recon_acc": 0.6813057661056519
+    }
+  ],
+  "mean_metrics": {
+    "acc": 0.6466911655187542,
+    "nmi": 0.6523122287584527,
+    "ari": 0.46802252816776296,
+    "modularity": 0.7132513201516579,
+    "recon_acc": 0.6845322489738465
+  }
+}

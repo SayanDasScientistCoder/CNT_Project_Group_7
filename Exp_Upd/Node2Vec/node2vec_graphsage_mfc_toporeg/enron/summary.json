@@ -1,0 +1,110 @@
+{
+  "config": {
+    "dataset_name": "enron",
+    "max_snapshots": 10,
+    "encoded_space_dim": 30,
+    "n_cluster": 7,
+    "num_pretrain_epoch": 500,
+    "num_topo_epoch": 500,
+    "start_mf": 300,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "alpha_pretrain": 10.0,
+    "alpha_topo": 1.0,
+    "beta_topo": 10.0,
+    "topo_cardinality": 32,
+    "eval_use_argmax_q": null,
+    "unknown_k_multiplier": 2,
+    "seed": 7,
+    "save_dir": "Output/node2vec_graphsage_mfc_toporeg",
+    "device": null,
+    "structural_feature_dim": 128,
+    "node2vec_walk_length": 40,
+    "node2vec_num_walks": 10,
+    "node2vec_window_size": 10,
+    "node2vec_epochs": 20,
+    "node2vec_p": 1.0,
+    "node2vec_q": 2.0,
+    "node2vec_workers": 1
+  },
+  "device": "cuda",
+  "metrics_by_snapshot": [
+    {
+      "acc": 0.5526315789473685,
+      "nmi": 0.22463787088093717,
+      "ari": 0.03529933961976465,
+      "modularity": 0.4835847382431233,
+      "recon_acc": 0.5886426568031311
+    },
+    {
+      "acc": 0.5581395348837209,
+      "nmi": 0.18269505728422886,
+      "ari": 0.030097656359951246,
+      "modularity": 0.5899018441403927,
+      "recon_acc": 0.5941048860549927
+    },
+    {
+      "acc": 0.53,
+      "nmi": 0.15823033420810345,
+      "ari": 0.016275450181095438,
+      "modularity": 0.5547174301011303,
+      "recon_acc": 0.6685999631881714
+    },
+    {
+      "acc": 0.5641025641025641,
+      "nmi": 0.20261260956670402,
+      "ari": 0.028573392435904375,
+      "modularity": 0.4903877195247933,
+      "recon_acc": 0.6590693593025208
+    },
+    {
+      "acc": 0.5847457627118644,
+      "nmi": 0.16435205283029242,
+      "ari": 0.03183028093431713,
+      "modularity": 0.43422142702988703,
+      "recon_acc": 0.6215168237686157
+    },
+    {
+      "acc": 0.5833333333333334,
+      "nmi": 0.15618337889672948,
+      "ari": 0.030674762140492758,
+      "modularity": 0.5161335112195062,
+      "recon_acc": 0.7118916511535645
+    },
+    {
+      "acc": 0.5873015873015873,
+      "nmi": 0.15285548926855858,
+      "ari": 0.013138524314756506,
+      "modularity": 0.4607947046863932,
+      "recon_acc": 0.6482741832733154
+    },
+    {
+      "acc": 0.5912408759124088,
+      "nmi": 0.15111296611032723,
+      "ari": -0.0021908811136085718,
+      "modularity": 0.5308362789664561,
+      "recon_acc": 0.6800575256347656
+    },
+    {
+      "acc": 0.5903614457831325,
+      "nmi": 0.17842016607993674,
+      "ari": 0.059018843645182215,
+      "modularity": 0.475241116616622,
+      "recon_acc": 0.6185222864151001
+    },
+    {
+      "acc": 0.5379310344827586,
+      "nmi": 0.13410089285853283,
+      "ari": -0.023630603011279006,
+      "modularity": 0.4751626816656601,
+      "recon_acc": 0.681950032711029
+    }
+  ],
+  "mean_metrics": {
+    "acc": 0.5679787717458739,
+    "nmi": 0.17052008179843509,
+    "ari": 0.021908676550657674,
+    "modularity": 0.5010981452193964,
+    "recon_acc": 0.6472629368305206
+  }
+}
